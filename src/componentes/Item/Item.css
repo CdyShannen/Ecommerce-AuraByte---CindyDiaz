@@ -1,0 +1,25 @@
+
+.contenedor__producto{
+flex: 1 1 calc(25% - 20px); 
+margin: 10px;
+box-sizing: border-box;
+position: relative;
+text-align: center;
+box-shadow: 0 4px 8px black;
+transition: background-color 0.3s, transform 0.3s;
+}
+
+.contenedor__producto:hover{
+    transform: scale(1.05);
+}
+
+.cardProducto {
+    border: 1px solid grey;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.img__producto {
+    width: 150px;
+    height: 150px;
+}
