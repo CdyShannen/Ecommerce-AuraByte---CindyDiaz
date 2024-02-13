@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { CarritoContext } from "../../context/CarritoContext";
 import { db } from "../../service/config";
 import { collection, addDoc } from "firebase/firestore";
+import Swal from 'sweetalert2';
 
 const Checkout = () => {
     const { carrito, vaciarCarrito, total } = useContext(CarritoContext);
@@ -17,12 +18,12 @@ const Checkout = () => {
     const manejadorSubmit = (event) => {
         event.preventDefault();
 
-        if(!nombre || !apellido || !telefono || !email || !emailConfirmacion){
+        if (!nombre || !apellido || !telefono || !email || !emailConfirmacion) {
             setError('Por favor completa todos los campos');
             return;
         }
 
-        if(email !== emailConfirmacion){
+        if (email !== emailConfirmacion) {
             setError("Los emails no coinciden");
             return;
         }
@@ -31,7 +32,7 @@ const Checkout = () => {
             items: carrito.map(producto => ({
                 id: producto.item.id,
                 nombre: producto.item.nombre,
-                cantidad: producto.cantidad 
+                cantidad: producto.cantidad
             })),
             total: total,
             fecha: new Date(),
@@ -45,14 +46,22 @@ const Checkout = () => {
             .then(docRef => {
                 setOrdenId(docRef.id);
                 vaciarCarrito();
+                setNombre("");
+                setApellido("");
+                setTelefono("");
+                setEmail("");
+                setEmailConfirmacion("");
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Orden creada exitosamente!',
+                    text: `Su numero de orden es: ${docRef.id}`,
+                })
             })
             .catch(error => {
                 console.log("Error al crear la orden de compra");
                 setError("No se pudo crear la orden");
             })
-
-
-    
     }
 
 
@@ -74,32 +83,32 @@ const Checkout = () => {
 
                 <div>
                     <label htmlFor="nombre">Nombre </label>
-                    <input type="text" id="nombre" onChange={(e)=> setNombre(e.target.value)}/>
+                    <input type="text" id="nombre" onChange={(e) => setNombre(e.target.value)} />
                 </div>
 
                 <div>
                     <label htmlFor="apellido">  Apellido</label>
-                    <input type="text" id="apellido" onChange={(e)=> setApellido(e.target.value)}/>
+                    <input type="text" id="apellido" onChange={(e) => setApellido(e.target.value)} />
                 </div>
 
                 <div>
                     <label htmlFor="telefono"> Telefono </label>
-                    <input type="text" id="telefono" onChange={(e)=> setTelefono(e.target.value)}/>
+                    <input type="text" id="telefono" onChange={(e) => setTelefono(e.target.value)} />
                 </div>
 
                 <div>
                     <label htmlFor="email"> E-mail </label>
-                    <input type="email" id="email" onChange={(e)=> setEmail(e.target.value)}/>
+                    <input type="email" id="email" onChange={(e) => setEmail(e.target.value)} />
                 </div>
 
                 <div>
                     <label htmlFor="emailcon">E-mail Confirmacion</label>
-                    <input type="email" id="emailcon" onChange={(e)=> setEmailConfirmacion(e.target.value)}/>
+                    <input type="email" id="emailcon" onChange={(e) => setEmailConfirmacion(e.target.value)} />
                 </div>
 
                 <div>
                     <label htmlFor=""></label>
-                    <input type="text" onChange={()=> set()}/>
+                    <input type="text" onChange={() => set()} />
                 </div>
 
                 {
@@ -107,10 +116,6 @@ const Checkout = () => {
                 }
 
                 <button>Finalizar Orden </button>
-
-                {
-                    ordenId && <strong>Gracias por tu compra! Tu numero de orden es:{ordenId} </strong>
-                }
             </form>
         </div>
     )
