@@ -3,6 +3,7 @@ import { CarritoContext } from "../../context/CarritoContext";
 import { db } from "../../service/config";
 import { collection, addDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
+import './Checkout.css';
 
 const Checkout = () => {
     const { carrito, vaciarCarrito, total } = useContext(CarritoContext);
@@ -67,8 +68,8 @@ const Checkout = () => {
 
 
     return (
-        <div>
-            <h2>Checkout - Finalizamos La Compra</h2>
+        <div className="checkout-container">
+            <h2>Finalizacion de compra</h2>
 
             <form onSubmit={manejadorSubmit}>
                 {
@@ -115,7 +116,7 @@ const Checkout = () => {
                     error && <p>{error}</p>
                 }
 
-                <button>Finalizar Orden </button>
+                <button className="vaciar-carrito-btn">Finalizar Orden </button>
             </form>
         </div>
     )
