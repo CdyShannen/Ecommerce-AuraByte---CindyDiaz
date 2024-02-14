@@ -1,32 +1,73 @@
+
 .contenedorItem {
-    text-align: center;
-    border: 1px solid black;
-    margin: 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    font-family: "Fjalla One", sans-serif;
-}
-
-.contenedorItem h2 {
-    font-size: 25px;
-    color: black;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; 
+  }
+  
+  .contenedorItem h2, .contenedorItem h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .contenedorItem h2 {
+    margin-bottom: 10px;
+  }
+  
+  .contenedorItem p {
+    margin: 0;
+    color: #000000;
+  }
+  
+  .contenedorItem img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto; 
     margin-top: 20px;
-}
-
-.contenedorItem h3 {
-    font-size: 20px;
-    color: black;
-
-}
-
-.contenedorItem p {
-    font-size: 15px;
-    color: black;
-}
-
-img {
-    width: 20rem;
-    margin: 10px;
-}
+    margin-bottom: 20px;
+  }
+  
+  .contenedorItem a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .contenedorItem a:hover {
+    background-color: #0056b3;
+  }
+  
+  .item-count-container {
+    text-align: center;
+  }
+  
+  .item-count-input {
+    width: 50px;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .item-count-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .item-count-button:hover {
+    background-color: #0056b3;
+  }
+  
